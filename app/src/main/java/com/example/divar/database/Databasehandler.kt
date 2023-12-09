@@ -32,5 +32,23 @@ class Databasehandler(context:Context)
         contentValues.put(username,user.username)
         db.insert(table_user,null,contentValues)
     }
+    fun deleteUserr(id: String){
+        val db= this.writableDatabase
+        db.delete(table_user,"${ID}=?", arrayOf(id))
+
+    }
+    fun updateuser(id: String,user: User) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(ID, id)
+        contentValues.put(username, user.username)
+        db.update(table_user, contentValues, "${ID}=?", arrayOf(id))
+
+        fun getuserbyid(id: Int) {
+            var query = "select * from ${table_user} where ${ID}=${id}"
+            var db = this.readableDatabase
+            var curosr = db.rawQuery(query, null)
+        }
+    }
 
 }
