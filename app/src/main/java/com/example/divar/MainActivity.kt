@@ -2,6 +2,7 @@ package com.example.divar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val btndelete = findViewById<Button>(R.id.btndelete)
         val btnupdate = findViewById<Button>(R.id.btnupdate)
         val btngetuser=findViewById<Button>(R.id.btnget)
+        val btngetalluser=findViewById<Button>(R.id.btngetall)
 
 
         val text = edt.text.toString()
@@ -31,16 +33,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         btndelete.setOnClickListener{
-            databasehandler.deleteUserr("5")
+            databasehandler.deleteUserr("12")
         }
         btnupdate.setOnClickListener{
             val user=User("Ali")
-            databasehandler.updateuser("5",user)
+            databasehandler.updateuser("12",user)
         }
 
         btngetuser.setOnClickListener{
-          val username=  databasehandler.getuserbyid(7)
+          val username=  databasehandler.getuserbyid(12)
             Toast.makeText(this,username,Toast.LENGTH_LONG).show()
         }
+       btngetalluser.setOnClickListener{
+          val aray=  databasehandler.getallusername()
+           aray.forEach {
+               Log.d("TAGXX","onCreate:${it}")
+           }
+       }
     }
 }

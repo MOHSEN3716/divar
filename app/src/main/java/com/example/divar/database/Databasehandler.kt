@@ -51,8 +51,18 @@ class Databasehandler(context:Context)
             curosr.moveToNext()
             val username=curosr.getString(curosr.getColumnIndexOrThrow(Username))
             return username
+        }
 
+    fun getallusername():List<String>{
+        var query = "select * from ${table_user}"
+        var db = this.readableDatabase
+        val usernamearray= mutableListOf<String>()
+        var curosr = db.rawQuery(query, null)
+        while (curosr.moveToNext()){
+                val username = curosr.getString(curosr.getColumnIndexOrThrow(Username))
+                usernamearray.add(username)
+            }
+        return usernamearray
 
     }
-
 }
