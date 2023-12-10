@@ -12,12 +12,12 @@ class Databasehandler(context:Context)
     companion object {
         val table_user = "user"
         val ID = "id"
-        val username = "username"
+        val Username = "username"
     }
 
     override fun onCreate(dp: SQLiteDatabase?) {
         val createTable =
-            "CREATE TABLE $table_user($ID integer primary key autoincrement,$username TEXT)"
+            "CREATE TABLE $table_user($ID integer primary key autoincrement,$Username TEXT)"
         dp?.execSQL(createTable)
         Log.d("TAGXX","onResponse")
     }
@@ -29,7 +29,7 @@ class Databasehandler(context:Context)
     fun addUser(user: User) {
         var db= this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(username,user.username)
+        contentValues.put(Username,user.username)
         db.insert(table_user,null,contentValues)
     }
     fun deleteUserr(id: String){
@@ -41,14 +41,18 @@ class Databasehandler(context:Context)
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(ID, id)
-        contentValues.put(username, user.username)
+        contentValues.put(Username, user.username)
         db.update(table_user, contentValues, "${ID}=?", arrayOf(id))
-
-        fun getuserbyid(id: Int) {
+    }
+        fun getuserbyid(id: Int):String {
             var query = "select * from ${table_user} where ${ID}=${id}"
             var db = this.readableDatabase
             var curosr = db.rawQuery(query, null)
-        }
+            curosr.moveToNext()
+            val username=curosr.getString(curosr.getColumnIndexOrThrow(Username))
+            return username
+
+
     }
 
 }

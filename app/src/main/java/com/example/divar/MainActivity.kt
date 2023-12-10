@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.example.divar.database.Databasehandler
 import com.example.divar.database.User
 
@@ -18,9 +19,11 @@ class MainActivity : AppCompatActivity() {
         val btnadd = findViewById<Button>(R.id.btnadd)
         val btndelete = findViewById<Button>(R.id.btndelete)
         val btnupdate = findViewById<Button>(R.id.btnupdate)
+        val btngetuser=findViewById<Button>(R.id.btnget)
 
 
         val text = edt.text.toString()
+
         btnadd.setOnClickListener{
             val username= edt.text.toString()
             val user = User(username)
@@ -33,12 +36,11 @@ class MainActivity : AppCompatActivity() {
         btnupdate.setOnClickListener{
             val user=User("Ali")
             databasehandler.updateuser("5",user)
-
-
         }
 
-
-
-
+        btngetuser.setOnClickListener{
+          val username=  databasehandler.getuserbyid(7)
+            Toast.makeText(this,username,Toast.LENGTH_LONG).show()
+        }
     }
 }
