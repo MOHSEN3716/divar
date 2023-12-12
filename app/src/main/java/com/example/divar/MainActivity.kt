@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         btngetuser.setOnClickListener{
           val username=  databasehandler.getuserbyid(12)
+
             Toast.makeText(this,username,Toast.LENGTH_LONG).show()
         }
        btngetalluser.setOnClickListener{
