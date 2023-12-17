@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Divar"
         tools:targetApi="31">
         <activity
+            android:name=".Dialog"
+            android:exported="false" />
+        <activity
             android:name=".adapter.itemAdapter"
             android:exported="false" />
         <activity
@@ -26,9 +29,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

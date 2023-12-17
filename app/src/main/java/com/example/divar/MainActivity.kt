@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val text = edt.text.toString()
 
+
         btnadd.setOnClickListener{
             val username= edt.text.toString()
             val user = User(username)
