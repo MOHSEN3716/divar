@@ -54,4 +54,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("io.github.farshidroohi:customAdapterRecycleView:2.0.3")
 
+    implementation ("com.github.aliab:Persian-Date-Picker-Dialog:1.8.0")
+
+
 }
