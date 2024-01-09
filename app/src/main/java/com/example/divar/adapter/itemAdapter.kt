@@ -2,9 +2,8 @@ package com.example.divar.adapter
 
 import android.content.Context
 import android.widget.TextView
-import com.example.divar.ItemClickListener
+import com.example.divar.more.ItemClickListener
 import com.example.divar.R
-import com.example.divar.database.User
 import io.github.farshidroohi.AdapterRecyclerView
 
 class itemAdapter(val itemClickListener: ItemClickListener):AdapterRecyclerView<String>(R.layout.item_recyclerview,0,0,0) {

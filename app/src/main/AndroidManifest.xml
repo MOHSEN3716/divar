@@ -19,33 +19,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Divar"
         tools:targetApi="31">
+
         <activity
             android:name=".AddplaceActivity"
-            android:exported="false" />
-        <activity
-            android:name=".cameracapture"
-            android:exported="true"></activity>
-        <activity
-            android:name=".DatapickerActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".Dialog"
-            android:exported="true"></activity>
-        <activity
-            android:name=".adapter.itemAdapter"
-            android:exported="true"></activity>
-        <activity
-            android:name=".RecyclerActivity"
-            android:exported="true"></activity>
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".more.cameracapture"
+            android:exported="false" />
+
+        <activity
+            android:name=".more.DatapickerActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".more.Dialog"
+            android:exported="true" />
+
+        <activity
+            android:name=".adapter.itemAdapter"
+            android:exported="true" />
+
+        <activity
+            android:name=".more.RecyclerActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+
+    </application>
 </manifest>

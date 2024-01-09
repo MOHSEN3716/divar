@@ -1,14 +1,15 @@
-package com.example.divar
+package com.example.divar.more
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.divar.R
 import com.example.divar.adapter.itemAdapter
 import com.example.divar.database.Databasehandler
 
-class RecyclerActivity : AppCompatActivity(),ItemClickListener {
+class RecyclerActivity : AppCompatActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler2)

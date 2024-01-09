@@ -1,8 +1,7 @@
-package com.example.divar
+package com.example.divar.more
 
 import android.Manifest
 import android.app.Activity
-import android.app.DownloadManager.Request
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
@@ -11,9 +10,10 @@ import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.divar.R
+import java.io.File
+import java.io.FileOutputStream
 
 class cameracapture : AppCompatActivity() {
     lateinit var imageview: ImageView
@@ -23,7 +23,7 @@ class cameracapture : AppCompatActivity() {
         setContentView(R.layout.activity_cameracapture)
 
         val btncamera = findViewById<Button>(R.id.btncamera)
-        imageview = findViewById<ImageView>(R.id.imageView)
+        imageview = findViewById(R.id.imageView)
 
         val request =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -45,8 +45,23 @@ class cameracapture : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == 1212) {
                 val bitmapImage = data?.extras?.get("data") as Bitmap
-                imageview.setImageBitmap(bitmapImage)
+                savebitmapeimage(bitmapImage)
             }
         }
+    }
+
+    fun savebitmapeimage(bitmap: Bitmap):String{
+        val file =bildfile("${System.currentTimeMillis()}.jpg")
+        val portal=biledoutpuotstreem(file)
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,portal)
+        portal.flush()
+        portal.close()
+        return file.absolutePath
+    }
+    fun biledoutpuotstreem(file:File):FileOutputStream{
+        return FileOutputStream(file)
+    }
+    fun bildfile(filename:String):File {
+        return File(this.filesDir,filename)
     }
 }

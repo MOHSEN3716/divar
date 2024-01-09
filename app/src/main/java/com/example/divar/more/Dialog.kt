@@ -1,4 +1,4 @@
-package com.example.divar
+package com.example.divar.more
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import com.example.divar.R
 
 class Dialog : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

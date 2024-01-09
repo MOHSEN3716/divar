@@ -1,4 +1,4 @@
-package com.example.divar
+package com.example.divar.more
 
 import android.R.attr.typeface
 import android.graphics.Color
