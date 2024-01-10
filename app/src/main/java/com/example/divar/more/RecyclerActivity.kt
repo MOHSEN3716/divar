@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divar.R
 import com.example.divar.adapter.itemAdapter
-import com.example.divar.database.Databasehandler
+import com.example.divar.database.Database
 
 class RecyclerActivity : AppCompatActivity(), ItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +20,10 @@ class RecyclerActivity : AppCompatActivity(), ItemClickListener {
         RecyclerView.layoutManager=LinearLayoutManager(this)
 
 
-        val Databasehandler=Databasehandler(this)
-        val usernameArray= Databasehandler.getallusername()
+        val Database=Database(this)
+//        val usernameArray= Database.getallusername()
 
-        itemAdapter.loadedState(usernameArray)
+//        itemAdapter.loadedState(usernameArray)
     }
 
     override fun onitemclick(username:String) {

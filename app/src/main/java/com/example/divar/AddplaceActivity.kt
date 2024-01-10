@@ -13,21 +13,31 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.divar.database.Database
+import com.example.divar.more.place
+import com.google.android.material.textfield.TextInputEditText
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog
 import ir.hamsaa.persiandatepicker.api.PersianPickerDate
 import ir.hamsaa.persiandatepicker.api.PersianPickerListener
 import java.io.File
 import java.io.FileOutputStream
+import kotlin.math.log
 
 class AddplaceActivity : AppCompatActivity() {
     lateinit var inputdata:EditText
     lateinit var imageView:ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_addplace)
+
         val btnchoseimage=findViewById<Button>(R.id.btnchoseimage)
         imageView=findViewById(R.id.imageView)
+        inputdata=findViewById(R.id.edtcreatedat)
 
+        val btnaddplace=findViewById<Button>(R.id.btnaddplace)
+
+        //اجازه دستررسی به دوربین
         val request =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
                 if (isGranted) {
@@ -37,18 +47,43 @@ class AddplaceActivity : AppCompatActivity() {
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_LONG).show()
                 }
             }
-
         btnchoseimage.setOnClickListener {
             request.launch(Manifest.permission.CAMERA)
         }
 
-        inputdata=findViewById(R.id.edtcreatedat)
+        //اجرای تاریخ
         inputdata.setOnClickListener{
             showdatapicker()
         }
 
+        val edttitle=findViewById<TextInputEditText>(R.id.edttitle)
+        val edtprice=findViewById<EditText>(R.id.edtprice)
+        val edtmetr=findViewById<EditText>(R.id.edtmetr)
+        val edtyear=findViewById<EditText>(R.id.edtyear)
+        val edtimadeaddress =findViewById<EditText>(R.id.edtcreatedat)
+
+
+          btnaddplace.setOnClickListener{
+
+            val Title = edttitle.text.toString()
+            val price = edtprice.text.toString().toInt()
+            val imageaddress = edtimadeaddress.text.toString().toInt()
+            val year = edtyear.text.toString()
+            val metr = edtmetr.text.toString().toInt()
+            val place = place(
+                Title,
+                price,
+                imageaddress,
+                metr,
+                year
+            )
+            val Database=Database(this)
+              Log.d("TAGXXX","onResponse")
+            Database.addplace(place)
+          }
 
     }
+    //تاریخ
     fun showdatapicker(){
         var picker = PersianDatePickerDialog(this)
             .setPositiveButtonString("رواله")
@@ -75,13 +110,13 @@ class AddplaceActivity : AppCompatActivity() {
 
     }
 
+    //عکس و زخیره
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1212) {
             val bitmapImage = data?.extras?.get("data") as Bitmap
-            val address=savebitmapeimage(bitmapImage)
+            val imageAddress=savebitmapeimage(bitmapImage)
             imageView.setImageBitmap(bitmapImage)
-            Log.d("TAGX","onActivityResult:${address}")
         }
     }
     fun savebitmapeimage(bitmap: Bitmap):String{
@@ -91,6 +126,8 @@ class AddplaceActivity : AppCompatActivity() {
         portal.flush()
         portal.close()
         return file.absolutePath
+        Log.d("TAGXXX","onResponseeee")
+
     }
     fun biledoutpuotstreem(file: File): FileOutputStream {
         return FileOutputStream(file)
