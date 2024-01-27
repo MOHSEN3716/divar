@@ -20,19 +20,19 @@
         android:theme="@style/Theme.Divar"
         tools:targetApi="31">
 
-        <!-- AddplaceActivity به عنوان لانچر تعیین شده است -->
         <activity
             android:name=".AddplaceActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
 
         <activity

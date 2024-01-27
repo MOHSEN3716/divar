@@ -26,6 +26,9 @@ import kotlin.math.log
 class AddplaceActivity : AppCompatActivity() {
     lateinit var inputdata:EditText
     lateinit var imageView:ImageView
+    var imageAddress:String?=null
+    var price:String?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,30 +59,33 @@ class AddplaceActivity : AppCompatActivity() {
             showdatapicker()
         }
 
-        val edttitle=findViewById<TextInputEditText>(R.id.edttitle)
+        val edttitle=findViewById<EditText>(R.id.edttitle)
         val edtprice=findViewById<EditText>(R.id.edtprice)
         val edtmetr=findViewById<EditText>(R.id.edtmetr)
         val edtyear=findViewById<EditText>(R.id.edtyear)
-        val edtimadeaddress =findViewById<EditText>(R.id.edtcreatedat)
 
 
           btnaddplace.setOnClickListener{
 
             val Title = edttitle.text.toString()
-            val price = edtprice.text.toString().toInt()
-            val imageaddress = edtimadeaddress.text.toString().toInt()
+            val priceString = edtprice?.text?.toString()
+            val price = priceString?.toIntOrNull() ?: 0
+            val imageaddress = imageAddress?.toInt() ?: 0
             val year = edtyear.text.toString()
+            val Createdat=inputdata.text.toString()
             val metr = edtmetr.text.toString().toInt()
             val place = place(
                 Title,
-                price,
-                imageaddress,
+                price!!,
+                imageaddress!!,
                 metr,
+                Createdat,
                 year
             )
             val Database=Database(this)
               Log.d("TAGXXX","onResponse")
             Database.addplace(place)
+              Toast.makeText(this, "شد.", Toast.LENGTH_SHORT).show()
           }
 
     }

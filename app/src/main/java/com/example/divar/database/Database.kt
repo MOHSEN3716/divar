@@ -18,6 +18,7 @@ class Database(context:Context)
         val Imageadrese = "imageadrese"
         val Metr = "metr"
         val Createdat = "createdat"
+        val year = "year"
     }
 
     override fun onCreate(dp: SQLiteDatabase?) {
@@ -27,7 +28,8 @@ class Database(context:Context)
                     "${price} integer, "+
                     "${Imageadrese} integer, "+
                     "${Metr} integer, "+
-                    "${Createdat} text ) "
+                    "${Createdat} text, "+
+                    "${year} integer ) "
         dp?.execSQL(createTable)
         Log.d("TAGXX","onResponse")
     }
@@ -44,8 +46,33 @@ class Database(context:Context)
         contentValues.put(price,place.price)
         contentValues.put(Imageadrese,place.imageadrese)
         contentValues.put(Metr,place.metr)
+        contentValues.put(Createdat,place.Createdat)
 
         db.insert(table_place,null,contentValues)
+    }
+    fun getallusername():List<place>{
+        var query = "select * from ${table_place}"
+        var db = this.readableDatabase
+        val placelist= mutableListOf<place>()
+
+        var curosr = db.rawQuery(query, null)
+        while (curosr.moveToNext()){
+            val Title = curosr.getString(curosr.getColumnIndexOrThrow(Title))
+            val ID = curosr.getInt(curosr.getColumnIndexOrThrow(ID))
+            val price = curosr.getInt(curosr.getColumnIndexOrThrow(price))
+            val Imageadrese = curosr.getInt(curosr.getColumnIndexOrThrow(Imageadrese))
+            val Metr = curosr.getInt(curosr.getColumnIndexOrThrow(Metr))
+            val Createdat = curosr.getString(curosr.getColumnIndexOrThrow(Createdat))
+            val year = curosr.getString(curosr.getColumnIndexOrThrow(year))
+
+            val place=place(Title,price,Imageadrese,Metr,Createdat,year)
+            place.id=ID
+
+
+            placelist.add(place)
+            }
+        return placelist
+
     }
 //    fun deleteUserr(id: String){
 //        val db= this.writableDatabase
@@ -68,16 +95,5 @@ class Database(context:Context)
 //            return username
 //        }
 //
-//    fun getallusername():List<String>{
-//        var query = "select * from ${table_user}"
-//        var db = this.readableDatabase
-//        val usernamearray= mutableListOf<String>()
-//        var curosr = db.rawQuery(query, null)
-//        while (curosr.moveToNext()){
-//                val username = curosr.getString(curosr.getColumnIndexOrThrow(Username))
-//                usernamearray.add(username)
-//            }
-//        return usernamearray
 //
-//    }
 }

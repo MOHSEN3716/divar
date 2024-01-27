@@ -6,29 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".AddplaceActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
         android:id="@+id/edttitle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
         android:hint="عنوان ملک شما"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        style="?attr/textInputFilledStyle">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
+        android:text="test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <EditText
         android:id="@+id/edtprice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:text="1234"
 
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
@@ -47,6 +43,7 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="text"
+        android:text="f32"
         android:hint="سن ملک شما"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +58,7 @@
         android:layout_marginEnd="10dp"
         android:ems="10"
         android:inputType="text"
+        android:text="23"
         android:hint="متراژ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
